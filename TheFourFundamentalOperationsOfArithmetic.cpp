@@ -24,6 +24,26 @@ int sub(int x, int y)
     return add(x, ~y+1); // 一个数字和它的补码的和为0
 }
 
+//乘法：
+uint32_t multi(uint32_t a, uint32_t b)
+{
+    if (a == 0 || b == 0)
+        return 0;
+    uint32_t result = 0;
+    uint32_t count = 0;
+    while (b != 0)
+    {
+        int rightBit = b & 0x1;
+        if (rightBit)
+            result += a << count;
+
+        ++count;
+        b = b >> 1;
+    }
+
+    return result;
+}
+
 //除法
 /*思路：
 可以同时得到商和余数的方法,只是在最后没有返回余数，可以根据需要，将余数返回：

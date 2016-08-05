@@ -1,3 +1,29 @@
+//加法：
+int add(int a, int b)
+{
+    if (a == 0) return b;
+    if (b == 0) return a;
+    int result = 0;
+    int carry = 0;
+    while (b != 0)
+    {
+        result = a ^ b;
+        carry = a & b;
+        carry = carry << 1;
+
+        a = result;
+        b = carry;
+    }
+
+    return result;
+}
+
+//减法： a - b  <==> a + (-b)
+int sub(int x, int y)
+{
+    return add(x, ~y+1); // 一个数字和它的补码的和为0
+}
+
 //除法
 /*思路：
 可以同时得到商和余数的方法,只是在最后没有返回余数，可以根据需要，将余数返回：
